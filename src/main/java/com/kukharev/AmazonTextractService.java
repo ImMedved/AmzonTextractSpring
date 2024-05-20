@@ -51,13 +51,13 @@ public class AmazonTextractService {
     }
 
     public GetDocumentTextDetectionResponse extractText(MultipartFile file) throws IOException, S3Exception {
-        // Загрузка файла в S3
+        // Export to S3
         String key = uploadFileToS3(file);
 
-        // Запуск анализа документа в Textract
+        // Running document analysis in Textract
         String jobId = startDocumentTextDetection(key);
 
-        // Ожидание завершения анализа и получение результата
+        // Waiting for the analysis to complete and receiving the result
         return getDocumentTextDetection(jobId);
     }
 
@@ -94,13 +94,18 @@ public class AmazonTextractService {
 
         return response;
 
-        /*StringBuilder extractedText = new StringBuilder();
-        response.blocks().forEach(block -> {
-            if (block.blockType().toString().equals("LINE")) {
-                extractedText.append(block.text()).append("\n");
-            }
-        });
 
-        return extractedText.toString();*/
+        //If we convert the received data into a string immediately, then we can use the code below.
+        //In this case, you will need to change the code in several other places.
+
+        /*
+            StringBuilder extractedText = new StringBuilder();
+            response.blocks().forEach(block -> {
+                if (block.blockType().toString().equals("LINE")) {
+                    extractedText.append(block.text()).append("\n");
+                }
+            });
+            return extractedText.toString();
+        */
     }
 }

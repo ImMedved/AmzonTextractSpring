@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+/*
+In this class you can register the creation of a new window or work with the console.
+You can also edit the messages received by the user, data entry methods
+(if you need to select the desired file through the UI) and cases of message output.
+ */
+
 @Controller
 public class UIController {
 

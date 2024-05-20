@@ -24,25 +24,26 @@ public class DocxGenerationService {
                 XWPFParagraph paragraph = doc.createParagraph();
                 XWPFRun run = paragraph.createRun();
                 run.setText(block.text());
-                // Если требуется сохранить позиции, можно использовать свойства параграфов и бегунков
+                // If you want to save positions, you can use the properties of paragraphs and sliders
                 // paragraph.setAlignment(ParagraphAlignment.LEFT);
                 // run.setFontSize(12);
             }
         }
 
-        // Установка имени файла и пути для сохранения
+        // Setting the file name and save path.
+        //The file name is set automatically, but if you add a name parameter to the method, it can be set manually.
         String outputFilename = originalFilename.replaceFirst("[.][^.]+$", "") + ".docx";
         Path outputPath = Paths.get("output", outputFilename);
 
-        // Создание папки, если она не существует
+        // Creating a folder if it doesn't exist.
+        //You can set the save file path by specifying this information in the method declaration.
         Files.createDirectories(outputPath.getParent());
 
-        // Сохранение документа в файл
+        // Saving a document to a file
         try (FileOutputStream out = new FileOutputStream(outputPath.toFile())) {
             doc.write(out);
         }
 
-        // Закрытие документа
         doc.close();
     }
 }
